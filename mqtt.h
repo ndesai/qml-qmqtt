@@ -106,6 +106,17 @@ public slots:
         }
     }
 
+    void publishMessage(QString message)
+    {
+        if(!message.isEmpty() && this->client->isConnected())
+        {
+            QMQTT::Message msg;
+            msg.setTopic(m_topic);
+            msg.setPayload(message.toLatin1());
+            this->client->publish(msg);
+        }
+    }
+
     // pass-thru slots
     void connect()
     {

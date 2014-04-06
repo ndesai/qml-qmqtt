@@ -32,5 +32,7 @@ void MQTT::initializeConnection()
                      this, SLOT(subscribeToTopic(quint8)));
     QObject::connect(this->client, SIGNAL(subscribed(QString)),
                      this, SLOT(subscribedToTopic(QString)));
+    QObject::connect(this->client, SIGNAL(disconnected()),
+                     this, SIGNAL(disconnected()));
 }
 
